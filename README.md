@@ -1,16 +1,16 @@
 # テーブル設計
 
 ## usersテーブル
-| Column          | Type   | Options     |
-| --------------- | ------ | ----------- |
-| email           | string | null: false, unique: true |
-| password        | string | null: false |
-| nickname        | string | null: false |
-| first_name      | string | null: false |
-| last_name       | string | null: false |
-| first_name_kana | string | null: false |
-| last_name_kana  | string | null: false |
-| birth_day       | string | null: false |
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| nickname           | string | null: false               |
+| first_name         | string | null: false               |
+| last_name          | string | null: false               |
+| first_name_kana    | string | null: false               |
+| last_name_kana     | string | null: false               |
+| birth_day          | date   | null: false               |
 
 ### Association
 - has_many :items
@@ -19,18 +19,17 @@
 
 
 ## itemsテーブル
-| Colum           | Type       | Options                        |
-| --------------- | -----------| ------------------------------ |
-| title           | string     | null: false                    |
-| detail          | text       | null: false                    |
-| price           | string     | null: false                    |
-| category        | string     | null: false                    |
-| status          | string     | null: false                    |
-| shipping_price  | string     | null: false                    |
-| delivery_source | string     | null: false                    |
-| shipping_day    | string     | null: false                    |
-| status          | string     | null: false                    |
-| user            | references | null: false, foreign_key: true |
+| Colum              | Type       | Options                        |
+| ------------------ | -----------| ------------------------------ |
+| title              | string     | null: false                    |
+| detail             | text       | null: false                    |
+| price              | integer    | null: false                    |
+| category_id        | integer    | null: false                    |
+| status_id          | integer    | null: false                    |
+| shipping_price_id  | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
+| shipping_day_id    | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -65,10 +64,10 @@
 ## addressesテーブル
 | Colum           | Type       | Options                        |
 | --------------- | -----------| ------------------------------ |
-| postal_code     | string     | null: false                    |
-| prefecture      | string     | null: false                    |
+| postal_code_id  | integer    | null: false                    |
+| prefecture_id   | integer    | null: false                    |
 | municipalities  | string     | null: false                    |
-| building_name   | string     | null: false                    |
+| building_name   | string     |                                |
 | tel             | integer    | null: false                    |
 | purchase        | references | null: false, foreign_key: true |
 
