@@ -64,12 +64,13 @@
 ## addressesテーブル
 | Colum           | Type       | Options                        |
 | --------------- | -----------| ------------------------------ |
-| postal_code_id  | integer    | null: false                    |
+| postal_code     | string     | null: false                    |
 | prefecture_id   | integer    | null: false                    |
 | municipalities  | string     | null: false                    |
 | building_name   | string     |                                |
-| tel             | integer    | null: false                    |
+| tel             | string     | null: false                    |
 | purchase        | references | null: false, foreign_key: true |
+| street          | string     | null: false                    |
 
 ### Association
 - belongs_to :purchase
