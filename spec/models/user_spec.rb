@@ -107,7 +107,6 @@ RSpec.describe User, type: :model do
         @user.first_name_kana = 'aあ1＠'
         @user.last_name_kana = 'aあ1＠'
         @user.valid?
-        binding.pry
         expect(@user.errors.full_messages).to include("First name kana 全角文字を使用してください", "Last name kana 全角文字を使用してください")
       end
 
