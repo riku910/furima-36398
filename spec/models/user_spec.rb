@@ -64,7 +64,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
 
-      it 'パスワードは、半角英数字混合での入力でないと登録できない' do
+      it 'パスワードは、数字のみでは登録できない' do
         @user.password = '111111'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", "Password には英字と数字の両方を含めて設定してください")
@@ -82,11 +82,16 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", "Password には英字と数字の両方を含めて設定してください")
       end
 
-      it '姓・名(全角)は、名字と名前がそれぞれ無いと登録できない' do
+      it '姓(全角)は、名字が無いと登録できない' do
         @user.first_name = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name can't be blank", "First name 全角文字を使用してください")
+      end
+
+      it '名(全角)は、名前が無いと登録できない' do
         @user.last_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name can't be blank", "First name 全角文字を使用してください", "Last name can't be blank", "Last name 全角文字を使用してください")
+        expect(@user.errors.full_messages).to include("Last name can't be blank", "Last name 全角文字を使用してください")
       end
 
       it '姓・名（全角）に半角文字が含まれていると登録できない' do
@@ -96,11 +101,16 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("First name 全角文字を使用してください", "Last name 全角文字を使用してください")
       end
 
-      it '姓・名（カナ）が空だと登録できない' do
+      it '姓（カナ）が空だと登録できない' do
         @user.first_name_kana = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana can't be blank", "First name kana 全角文字を使用してください")
+      end
+
+      it '名（カナ）が空だと登録できない' do
         @user.last_name_kana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana can't be blank", "First name kana 全角文字を使用してください", "Last name kana can't be blank", "Last name kana 全角文字を使用してください")
+        expect(@user.errors.full_messages).to include("Last name kana can't be blank", "Last name kana 全角文字を使用してください")
       end
 
       it '姓・名（カナ）はカタカナ以外の文字（平仮名・漢字・英数字・記号）が含まれていると登録できない' do
