@@ -74,3 +74,10 @@
 
 ### Association
 - belongs_to :purchase
+
+
+
+
+
+
+
