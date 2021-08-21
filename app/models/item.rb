@@ -14,4 +14,17 @@ class Item < ApplicationRecord
   has_one :purchase
   has_many :comments
   has_one_attached :image
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
+  belongs_to :status
+  belongs_to :shipping_price
+  belongs_to :prefecture
+  prefecture :shipping_day
+
+  validates :category_id,       numericality: { other_than: 1 } 
+  validates :status_id,         numericality: { other_than: 1 } 
+  validates :shipping_price_id, numericality: { other_than: 1 } 
+  validates :prefecture_id,     numericality: { other_than: 1 } 
+  validates :shipping_day_id,   numericality: { other_than: 1 } 
 end
