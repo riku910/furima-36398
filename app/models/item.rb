@@ -7,7 +7,6 @@ class Item < ApplicationRecord
   validates :shipping_price_id, presence: true
   validates :prefecture_id,     presence: true
   validates :shipping_day_id,   presence: true
-  validates :user,              presence: true, foreign_key: true
   validates :image,             presence: true
 
   belongs_to :user
@@ -20,7 +19,7 @@ class Item < ApplicationRecord
   belongs_to :status
   belongs_to :shipping_price
   belongs_to :prefecture
-  prefecture :shipping_day
+  belongs_to :shipping_day
 
   validates :category_id,       numericality: { other_than: 1 } 
   validates :status_id,         numericality: { other_than: 1 } 
