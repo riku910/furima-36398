@@ -8,6 +8,7 @@ class Item < ApplicationRecord
   validates :prefecture_id,     presence: true
   validates :shipping_day_id,   presence: true
   validates :user,              presence: true, foreign_key: true
+  validates :image,             presence: true
 
   belongs_to :user
   has_one :purchase
