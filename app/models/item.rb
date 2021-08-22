@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   validates :title,             presence: true
   validates :detail,            presence: true
   validates :price,             presence: true
+  validates :price,             numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   validates :category_id,       presence: true
   validates :status_id,         presence: true
   validates :shipping_price_id, presence: true

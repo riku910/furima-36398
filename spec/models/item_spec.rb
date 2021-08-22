@@ -33,25 +33,25 @@ RSpec.describe Item, type: :model do
       end
 
       it 'カテゴリー選択が{---}では登録ができない' do 
-        @item.category_id = '1'
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
 
       it '商品の状態が{---}では登録ができない' do 
-        @item.status_id = '1'
+        @item.status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Status must be other than 1")
       end
 
       it '発送元が{---}では登録ができない' do 
-        @item.prefecture_id = '1'
+        @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
       end
 
       it '配送料の負担が{---}では登録ができない' do 
-        @item.shipping_price_id = '1'
+        @item.shipping_price_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping price must be other than 1")
       end
@@ -66,6 +66,18 @@ RSpec.describe Item, type: :model do
         @item.image = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Image can't be blank")
+      end
+
+      it '価格は半角数字以外では登録できない' do 
+        @item.price = 'test'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+
+      it '価格は300~9999999以外では登録できない' do 
+        @item.price = 100
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
     end
   end
