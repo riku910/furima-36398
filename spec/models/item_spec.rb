@@ -56,6 +56,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Shipping price must be other than 1")
       end
 
+      it '発送までの日数が{---}では登録ができない' do 
+        @item.shipping_day_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping day must be other than 1")
+      end
+
       it 'ユーザーが紐付いていなければ投稿できない' do
         @item.user = nil
         @item.valid?
