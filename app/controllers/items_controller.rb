@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :itemparams_id, only: [:show, :edit, :update]
   before_action :before_edit, only: [:edit]
-  before_action :itemparams_id, only: [:shoe, :edit, :update]
+  
   def index
     @item = Item.all
   end
@@ -40,7 +41,6 @@ class ItemsController < ApplicationController
   end
 
   def before_edit
-    @item = Item.find(params[:id])
     if current_user.id != @item.user_id
       redirect_to root_path
     end
