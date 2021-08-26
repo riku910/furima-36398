@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
 
   def edit
     unless user_signed_in?
-      redirect_to root_path
+      redirect_to new_item_path
     end
     @prototype = Prototype.find(params[:id])
   end
