@@ -25,8 +25,7 @@ class ItemsController < ApplicationController
     unless user_signed_in?
       redirect_to new_item_path
     end
-    @prototype = Prototype.find(params[:id])
-  end
+    @item = Item.find(params[:id])
   end
 
   private
