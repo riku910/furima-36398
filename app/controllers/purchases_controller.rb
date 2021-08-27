@@ -6,4 +6,7 @@ class PurchasesController < ApplicationController
     @purchase_address = PurchaseAddress.new
   end
 
+  def create
+    
+  end
 end
