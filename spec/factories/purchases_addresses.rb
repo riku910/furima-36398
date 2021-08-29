@@ -5,8 +5,6 @@ FactoryBot.define do
     municipalities {'京都市'}
     building_name  {'建物名'}
     street         {'1-1'}
-    tel            {08012345678}
-
-    association :item, :user
+    tel            {'08012345678'}
   end
 end
