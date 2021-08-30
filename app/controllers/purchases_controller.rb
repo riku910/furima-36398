@@ -1,5 +1,6 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!, expect: :index
+  before_action :root_redirect, only: [:index]
 
   def index
     @item = Item.find(params[:item_id])
@@ -30,5 +31,12 @@ class PurchasesController < ApplicationController
         card: purchase_params[:token],
         currency: 'jpy'
       )
+  end
+
+  def root_redirect
+    @item = Item.find(params[:item_id])
+    if current_user.id = @item.user_id
+      redirect_to root_path
+    end
   end
 end
