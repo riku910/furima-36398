@@ -5,6 +5,7 @@
 
 require("@rails/ujs").start()
 require("../item_price");
+require("../card");
 require("@rails/activestorage").start()
 require("channels")
 
