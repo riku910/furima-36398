@@ -3,12 +3,12 @@ class PurchasesController < ApplicationController
   before_action :purchase_root, only: [:index]
 
   def index
-    @item = Item.find(params[:item_id])
+    item_params
     @purchase_address = PurchaseAddress.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
+    item_params
     @purchase_address = PurchaseAddress.new(purchase_params)
     if @purchase_address.valid?
       pay
@@ -38,5 +38,9 @@ class PurchasesController < ApplicationController
     if @item.purchase.present?
       redirect_to root_path
     end
+  end
+
+  def item_params
+    @item = Item.find(params[:item_id])
   end
 end
