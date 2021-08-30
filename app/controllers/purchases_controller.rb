@@ -1,14 +1,13 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!, only: :index
   before_action :purchase_root, only: [:index]
+  before_action :item_params, only: [:index, :create]
 
   def index
-    item_params
     @purchase_address = PurchaseAddress.new
   end
 
   def create
-    item_params
     @purchase_address = PurchaseAddress.new(purchase_params)
     if @purchase_address.valid?
       pay
