@@ -1,6 +1,6 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!, expect: :index
-  before_action :root_redirect, only: [:index]
+  before_action :purchase_root, only: [:index]
 
   def index
     @item = Item.find(params[:item_id])
@@ -33,9 +33,9 @@ class PurchasesController < ApplicationController
       )
   end
 
-  def root_redirect
+  def purchase_root
     @item = Item.find(params[:item_id])
-    if current_user.id = @item.user_id
+    if @item.purchase.present?
       redirect_to root_path
     end
   end
