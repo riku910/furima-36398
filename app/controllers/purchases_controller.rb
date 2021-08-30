@@ -7,7 +7,6 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    binding.pry
     @item = Item.find(params[:item_id])
     @purchase_address = PurchaseAddress.new(purchase_params)
     if @purchase_address.valid?
@@ -20,6 +19,6 @@ class PurchasesController < ApplicationController
 
   private
   def purchase_params
-    params.require(:purchase_address).permit(:postal_code, :prefecture_id, :municipalities, :street, :building_name, :tel).merge(user_id: current_user.id, item_id: @item.id)
+    params.require(:purchase_address).permit(:postal_code, :prefecture_id, :municipalities, :street, :building_name, :tel).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
   end
 end
