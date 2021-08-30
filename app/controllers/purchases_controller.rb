@@ -33,7 +33,7 @@ class PurchasesController < ApplicationController
   end
 
   def purchase_root
-    @item = Item.find(params[:item_id])
+    item_params
     if @item.purchase.present?
       redirect_to root_path
     end
