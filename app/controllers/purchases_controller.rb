@@ -1,5 +1,5 @@
 class PurchasesController < ApplicationController
-  before_action :authenticate_user!, expect: :index
+  before_action :authenticate_user!, only: :index
   before_action :purchase_root, only: [:index]
 
   def index
